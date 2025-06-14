@@ -12,6 +12,13 @@ code {
         monospace;
 }
 
+.textarea-title {
+    text-align: left;
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+
 .App {
     text-align: center;
 }

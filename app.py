@@ -9,18 +9,19 @@ from vigenere import casear_encrypt, encrypt, decrypt
 
 app = Flask(__name__)
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["GET", "POST"])
 def hello_world():
     submitted_text = None
+    encrypted_text = "ciao"
     if request.method == "POST":
         submitted_text = request.form.get("user_input")
 
-        shift_amount = 3
-        encrypted_text = casear_encrypt(submitted_text, shift_amount)
+    #     shift_amount = 3
+    #     encrypted_text = casear_encrypt(submitted_text, shift_amount)
         vig_key = "marco"
         encrypted_text = encrypt(submitted_text, vig_key)
         
-    return render_template("index.html", title="Vigenere")
+    return render_template("index.html", plaintext=submitted_text, result=encrypted_text, title="Vigenere")
 
 @app.route("/cipher", methods=["GET", "POST"])
 def vig_cipher():
@@ -33,7 +34,7 @@ def vig_cipher():
         vig_key = "marco"
         encrypted_text = encrypt(submitted_text, vig_key)
 
-    return render_template("cipher.html", text=encrypted_text, title="Vigenere Cipher")
+    return render_template("cipher.html", result=encrypted_text, title="Vigenere Cipher")
 
 @app.route("/qr")
 def qr():
