@@ -3,22 +3,33 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 
 <body>
+    <div class="qr-container">
+        <!--<h1>QR Code</h1>-->
+        <img src="{{ url_for('qr') }}?data={{ url }}" alt="QR Code">
+        <!--<p class="small">{{ url }}</p>-->
+    </div>
+
     <div class="App">
         <header class="App-header">
-            <img src="{{ url_for('static', filename='Octocat.png') }}" class="App-logo" alt="logo" />
             <p>
                 GitHub Codespaces <span class="heart">♥️</span> Flask
             </p>
+            <img src="{{ url_for('static', filename='codercat.png') }}" class="App-logo" alt="logo" />
             <p class="small">
                 Edit <code>templates/index.html</code> and refresh to see your changes!
             </p>
+
+        <!-- New form for encryption/decryption -->
+        <form method="POST" action="/process" style="width: 80%; max-width: 600px; margin-top: 2rem;">
+            <textarea name="text" rows="6" placeholder="Enter text to encrypt or decrypt" style="width: 100%; padding: 1rem; font-size: 1rem;"></textarea>
+            <div style="margin-top: 1rem;">
+                <button type="submit" name="action" value="encrypt" style="margin-right: 1rem;">Encrypt</button>
+                <button type="submit" name="action" value="decrypt">Decrypt</button>
+            </div>
+        </form>
+
         </header>
     </div>
-
-    <h1>QR Code for this page</h1>
-    <p>{{ url }}</p>
-    <img src="{{ url_for('qr') }}?data={{ url }}">
-
 </body>
 
 </html>

@@ -43,3 +43,19 @@ code {
 .small {
     font-size: 0.75rem;
 }
+
+.qr-container {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    text-align: center;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.qr-container img {
+    width: 120px; /* or any size you prefer */
+    height: auto;
+}
