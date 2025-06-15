@@ -9,33 +9,33 @@ from vigenere import casear_encrypt, encrypt, decrypt
 
 app = Flask(__name__)
 
+#############
+# MAIN PAGE #
+#############
 @app.route("/", methods=["GET", "POST"])
 def hello_world():
     submitted_text = None
-    encrypted_text = "ciao"
+    result_text = None
+
+
     if request.method == "POST":
+        action = request.form.get("action")
+        vig_key = load_key()
         submitted_text = request.form.get("user_input")
 
-    #     shift_amount = 3
-    #     encrypted_text = casear_encrypt(submitted_text, shift_amount)
-        vig_key = "marco"
-        encrypted_text = encrypt(submitted_text, vig_key)
-        
-    return render_template("index.html", plaintext=submitted_text, result=encrypted_text, title="Vigenere")
+        if action == "encrypt":
+            result_text = encrypt(submitted_text, vig_key)
+        elif action == "decrypt":
+            result_text = decrypt(submitted_text, vig_key)
+        elif action == "clear":
+            submitted_text = ""
+            result_text = ""
 
-@app.route("/cipher", methods=["GET", "POST"])
-def vig_cipher():
-    submitted_text = None
-    if request.method == "POST":
-        submitted_text = request.form.get("user_input")
+    return render_template("index.html", user_text=submitted_text, processed_text=result_text, title="Vigenere")
 
-        shift_amount = 3
-        encrypted_text = casear_encrypt(submitted_text, shift_amount)
-        vig_key = "marco"
-        encrypted_text = encrypt(submitted_text, vig_key)
-
-    return render_template("cipher.html", result=encrypted_text, title="Vigenere Cipher")
-
+###########
+# QR CODE #
+###########
 @app.route("/qr")
 def qr():
     # Get current page's URL
@@ -66,3 +66,13 @@ def qr():
     img.save(buf, format='PNG')
     buf.seek(0)
     return send_file(buf, mimetype='image/png')
+
+#################
+# OTHER METHODS #
+#################
+def load_key(filepath="key.txt"):
+    try:
+        with open(filepath, "r") as file:
+            return file.read().strip()
+    except FileNotFoundError:
+        return "DEFAULTKEY"
