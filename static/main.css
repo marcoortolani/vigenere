@@ -51,6 +51,33 @@ code {
     font-size: 0.75rem;
 }
 
+.nav-list {
+    color: white;                     /* Matches your header text color */
+    font-size: 1rem;                  /* Slightly smaller than header */
+    font-weight: 400;                 /* Normal weight */
+    text-align: left;                 /* Left-align text */
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+    padding-left: 1.5rem;            /* Indent bullets */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;              /* Center container */
+}
+
+.nav-list li {
+    margin-bottom: 0.5rem;
+}
+
+.nav-list a.App-link {
+    color: #61dafb;                  /* Your link color */
+    font-size: 0.875rem;             /* Slightly smaller than list text */
+}
+
+.nav-list a.App-link:hover {
+    text-decoration: underline;
+}
+
 .qr-container {
     position: absolute;
     top: 1rem;
@@ -64,5 +91,21 @@ code {
 
 .qr-container img {
     width: 120px; /* or any size you prefer */
+    height: auto;
+}
+
+.octocat-container {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    text-align: center;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.octocat-container img {
+    width: 120px;
     height: auto;
 }

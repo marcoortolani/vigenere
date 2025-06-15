@@ -1,0 +1,50 @@
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+<body>
+    <div class="octocat-container">
+        <a href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='codercat.png') }}" alt="Home">
+        </a>
+    </div>    
+    <div class="qr-container">
+        <!--<h1>QR Code</h1>-->
+        <img src="{{ url_for('qr') }}?data={{ url }}" alt="QR Code">
+        <!--<p class="small">{{ url }}</p>-->
+    </div>
+
+    <div class="App">
+        <header class="App-header">
+            <p>
+                The Caesar cipher
+            </p>
+            <img src="{{ url_for('static', filename='caesar.png') }}" class="App-logo" alt="caesar" />
+
+
+            <!-- New form for encryption/decryption -->
+            <div style="width: 100%; max-width: 600px; margin: 0 auto; text-align: left;">
+                <h2 class="textarea-title" style="margin-bottom: 0.5rem;">Enter your text</h2>
+                <form method="POST" style="margin-top: 0;">
+                    <textarea name="user_input" rows="6" placeholder="Enter text to encrypt or decrypt"
+                        style="width: 100%; padding: 1rem; font-size: 1rem;" required>{{ user_text if user_text else '' }}</textarea>
+                    <div style="margin-top: 1rem;">
+                        <button type="submit" name="action" value="decrypt" style="margin-right: 1rem;">Decrypt</button>
+                        <button type="submit" name="action" value="clear">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Show processed text if available -->
+            {% if processed_text %}
+            <div style="text-align: left; width: 100%; max-width: 600px; margin: 0 auto;">
+                <h2 class="textarea-title">Processed text</h2>
+                <textarea readonly rows="6" 
+                    style="width: 100%; max-width: 600px; padding: 1rem; font-size: 1rem;">{{ processed_text }}</textarea>
+            </div>            
+            {% endif %}        
+        </header>
+    </div>
+</body>
+
+</html>

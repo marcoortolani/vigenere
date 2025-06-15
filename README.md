@@ -1,13 +1,8 @@
-# GitHub Codespaces ♥️ Flask
+# Keele University - Miniplacement research week
+## Using Python and Flask to build a web-based cipher
 
-Welcome to your shiny new Codespace running Flask! We've got everything fired up and running for you to explore Flask.
+This is the code relative to our exercises on ciphers.
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+The code implements a server whch will encrypt/decrypt the given text according to one of the ciphers we'll study.
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
-
-To run this application:
-
-```
-flask --debug run
-```
+The server is implemented with `flask` on Python

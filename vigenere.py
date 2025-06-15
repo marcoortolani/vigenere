@@ -1,22 +1,10 @@
-def casear_encrypt(text, shift):
-    # Simple Caesar cipher example
-    result = ""
-    for char in text:
-        if char.isalpha():
-            base = ord('A') if char.isupper() else ord('a')
-            result += chr((ord(char) - base + shift) % 26 + base)
-        else:
-            result += char
-    return result
-
-def encrypt(plaintext: str, key: str) -> str:
+def vig_encrypt(plaintext: str, key: str) -> str:
     """
     Encrypts plaintext using the Vigenère cipher with the given key.
     """
     return _vig(plaintext, key, mode="encrypt")
 
-
-def decrypt(ciphertext: str, key: str) -> str:
+def vig_decrypt(ciphertext: str, key: str) -> str:
     """
     Decrypts ciphertext using the Vigenère cipher with the given key.
     """

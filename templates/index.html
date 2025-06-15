@@ -18,29 +18,15 @@
             <p class="small">
                 Edit <code>templates/index.html</code> or <code>vigenere.py</code> and refresh to see your changes!
             </p>
-
-            <!-- New form for encryption/decryption -->
-            <div style="width: 100%; max-width: 600px; margin: 0 auto; text-align: left;">
+            <div style="text-align: left; width: 100%; max-width: 600px; margin: 2rem auto;">
                 <h2 class="textarea-title" style="margin-bottom: 0.5rem;">Enter your text</h2>
-                <form method="POST" style="margin-top: 0;">
-                    <textarea name="user_input" rows="6" placeholder="Enter text to encrypt or decrypt"
-                        style="width: 100%; padding: 1rem; font-size: 1rem;" required>{{ user_text if user_text else '' }}</textarea>
-                    <div style="margin-top: 1rem;">
-                        <button type="submit" name="action" value="encrypt" style="margin-right: 1rem;">Encrypt</button>
-                        <button type="submit" name="action" value="decrypt" style="margin-right: 1rem;">Decrypt</button>
-                        <button type="submit" name="action" value="clear">Clear</button>
-                    </div>
-                </form>
+                <ul class="nav-list"">
+                    <li><a href="{{ url_for('caesar') }}" class="App-link">The Caesar cipher</a></li>
+                    <li><a href="{{ url_for('vigenere1') }}" class="App-link">The Vigenère cipher - task 1</a></li>
+                    <li><a href="{{ url_for('caesar') }}" class="App-link">The Vigenère cipher - task 2</a></li>
+                </ul>
             </div>
 
-            <!-- Show processed text if available -->
-            {% if processed_text %}
-            <div style="text-align: left; width: 100%; max-width: 600px; margin: 0 auto;">
-                <h2 class="textarea-title">Processed text</h2>
-                <textarea readonly rows="6" 
-                    style="width: 100%; max-width: 600px; padding: 1rem; font-size: 1rem;">{{ processed_text }}</textarea>
-            </div>            
-            {% endif %}        
         </header>
     </div>
 </body>
