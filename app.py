@@ -7,7 +7,7 @@ import io
 import os
 
 from vigenere import vig_encrypt, vig_decrypt
-from caesar import casear_encrypt
+from caesar import caesar_encrypt, caesar_decrypt
 
 app = Flask(__name__)
 
@@ -28,16 +28,15 @@ def caesar():
     submitted_text = None
     result_text = None
 
-
     if request.method == "POST":
         action = request.form.get("action")
-        vig_key = load_key()
+        shift = int(request.form.get("shift", 3))  # default to 3 if not provided
         submitted_text = request.form.get("user_input")
 
         if action == "encrypt":
-            result_text = casear_encrypt(submitted_text, vig_key)
+            result_text = caesar_encrypt(submitted_text, shift)
         elif action == "decrypt":
-            result_text = casear_encrypt(submitted_text, vig_key)
+            result_text = caesar_decrypt(submitted_text, shift)
         elif action == "clear":
             submitted_text = ""
             result_text = ""
