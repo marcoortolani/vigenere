@@ -43,9 +43,9 @@ def caesar():
 
     return render_template("caesar.html", user_text=submitted_text, processed_text=result_text, title="Caesar cipher", url=current_url)
 
-###############
-# CAESAR TASK #
-###############
+##################
+# VIGENERE TASK #
+#################
 @app.route("/vigenere1", methods=["GET", "POST"])
 def vigenere1():
     current_url = request.url  # full URL of current page
@@ -61,8 +61,8 @@ def vigenere1():
 
         if action == "encrypt":
             result_text = vig_encrypt(submitted_text, vig_key)
-        elif action == "decrypt":
-            result_text = vig_decrypt(submitted_text, vig_key)
+        # elif action == "decrypt":
+        #     result_text = vig_decrypt(submitted_text, vig_key)
         elif action == "clear":
             submitted_text = ""
             result_text = ""
