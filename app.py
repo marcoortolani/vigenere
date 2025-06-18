@@ -7,6 +7,7 @@ import io
 import os
 
 from caesar import caesar_encrypt, caesar_decrypt
+from caesar_exercise import caesar_exe_encrypt, caesar_exe_decrypt
 from vigenere import vig_encrypt, vig_decrypt
 from vigenere_exercise import vig_exe_encrypt, vig_exe_decrypt
 
@@ -43,6 +44,31 @@ def caesar():
             result_text = ""
 
     return render_template("caesar.html", user_text=submitted_text, processed_text=result_text, title="Caesar cipher", url=current_url)
+
+###############
+# CAESAR TASK #
+###############
+@app.route("/caesar1", methods=["GET", "POST"])
+def caesar1():
+    current_url = request.url  # full URL of current page
+
+    submitted_text = None
+    result_text = None
+
+    if request.method == "POST":
+        action = request.form.get("action")
+        shift = int(request.form.get("shift", 3))  # default to 3 if not provided
+        submitted_text = request.form.get("user_input")
+
+        if action == "encrypt":
+            result_text = caesar_exe_encrypt(submitted_text, shift)
+        elif action == "decrypt":
+            result_text = caesar_exe_decrypt(submitted_text, shift)
+        elif action == "clear":
+            submitted_text = ""
+            result_text = ""
+
+    return render_template("caesar1.html", user_text=submitted_text, processed_text=result_text, title="Caesar cipher", url=current_url)
 
 ###################
 # VIGENERE CIPHER #
