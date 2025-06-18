@@ -16,14 +16,15 @@
             </p>
             <img src="{{ url_for('static', filename='codercat.png') }}" class="App-logo" alt="logo" />
             <p class="small">
-                Edit <code>templates/index.html</code> or <code>vigenere.py</code> and refresh to see your changes!
+                Edit <code>caesar.py</code> or <code>vigenere.py</code> and refresh to see your changes!
             </p>
             <div style="text-align: left; width: 100%; max-width: 600px; margin: 2rem auto;">
                 <h2 class="textarea-title" style="margin-bottom: 0.5rem;">Enter your text</h2>
                 <ul class="nav-list"">
                     <li><a href="{{ url_for('caesar') }}" class="App-link">The Caesar cipher</a></li>
                     <li><a href="{{ url_for('vigenere1') }}" class="App-link">The Vigenère cipher - encrypt only</a></li>
-                    <!-- <li><a href="{{ url_for('caesar') }}" class="App-link">The Vigenère cipher - task 2</a></li> -->
+                    <li><a href="{{ url_for('vigenere2') }}" class="App-link">The Vigenère cipher - exercise</a></li>
+                    <li><a href="{{ url_for('vigenere') }}" class="App-link">The Vigenère cipher - complete</a></li>
                 </ul>
             </div>
 

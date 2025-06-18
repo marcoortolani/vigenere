@@ -6,8 +6,9 @@ import qrcode
 import io
 import os
 
-from vigenere import vig_encrypt, vig_decrypt
 from caesar import caesar_encrypt, caesar_decrypt
+from vigenere import vig_encrypt, vig_decrypt
+from vigenere_exercise import vig_exe_encrypt, vig_exe_decrypt
 
 app = Flask(__name__)
 
@@ -18,9 +19,9 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-###############
-# CAESAR TASK #
-###############
+#################
+# CAESAR CIPHER #
+#################
 @app.route("/caesar", methods=["GET", "POST"])
 def caesar():
     current_url = request.url  # full URL of current page
@@ -43,9 +44,35 @@ def caesar():
 
     return render_template("caesar.html", user_text=submitted_text, processed_text=result_text, title="Caesar cipher", url=current_url)
 
+###################
+# VIGENERE CIPHER #
+###################
+@app.route("/vigenere", methods=["GET", "POST"])
+def vigenere():
+    current_url = request.url  # full URL of current page
+
+    submitted_text = None
+    result_text = None
+
+
+    if request.method == "POST":
+        action = request.form.get("action")
+        vig_key = load_key()
+        submitted_text = request.form.get("user_input")
+
+        if action == "encrypt":
+            result_text = vig_encrypt(submitted_text, vig_key)
+        elif action == "decrypt":
+            result_text = vig_decrypt(submitted_text, vig_key)
+        elif action == "clear":
+            submitted_text = ""
+            result_text = ""
+
+    return render_template("vigenere.html", user_text=submitted_text, processed_text=result_text, title="Vigenère cipher", url=current_url)
+
 ##################
-# VIGENERE TASK #
-#################
+# VIGENERE TASK1 #
+##################
 @app.route("/vigenere1", methods=["GET", "POST"])
 def vigenere1():
     current_url = request.url  # full URL of current page
@@ -61,13 +88,37 @@ def vigenere1():
 
         if action == "encrypt":
             result_text = vig_encrypt(submitted_text, vig_key)
-        # elif action == "decrypt":
-        #     result_text = vig_decrypt(submitted_text, vig_key)
         elif action == "clear":
             submitted_text = ""
             result_text = ""
 
     return render_template("vigenere1.html", user_text=submitted_text, processed_text=result_text, title="Vigenère cipher", url=current_url)
+
+##################
+# VIGENERE TASK2 #
+##################
+@app.route("/vigenere2", methods=["GET", "POST"])
+def vigenere2():
+    current_url = request.url  # full URL of current page
+
+    submitted_text = None
+    result_text = None
+
+
+    if request.method == "POST":
+        action = request.form.get("action")
+        vig_key = load_key()
+        submitted_text = request.form.get("user_input")
+
+        if action == "encrypt":
+            result_text = vig_exe_encrypt(submitted_text, vig_key)
+        elif action == "decrypt":
+            result_text = vig_exe_decrypt(submitted_text, vig_key)
+        elif action == "clear":
+            submitted_text = ""
+            result_text = ""
+
+    return render_template("vigenere2.html", user_text=submitted_text, processed_text=result_text, title="Vigenère cipher", url=current_url)
 
 ###########
 # QR CODE #

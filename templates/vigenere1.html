@@ -3,6 +3,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 
 <body>
+    <div class="octocat-container">
+        <a href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='codercat.png') }}" alt="Home">
+        </a>
+    </div>    
     <div class="qr-container">
         <!--<h1>QR Code</h1>-->
         <img src="{{ url_for('qr') }}?data={{ url }}" alt="QR Code">
@@ -16,7 +21,7 @@
             </p>
             <img src="{{ url_for('static', filename='vigenere.png') }}" class="App-logo" alt="logo" />
             <p class="small">
-                Edit <code>templates/index.html</code> or <code>vigenere.py</code> and refresh to see your changes!
+                Edit <code>vigenere.py</code> and refresh to see your changes!
             </p>
 
             <!-- New form for encryption/decryption -->
